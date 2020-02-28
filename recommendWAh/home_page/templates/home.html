@@ -2,14 +2,63 @@
 
 {% block title %}Home{% endblock %}
 
+
 {% block content %}
-{% if user.is_authenticated %}
-  <div style="text-align:center">Hi {{ user.username }}! Welocome to recommendWAh!</div>
-  <p><a href="{% url 'logout' %}">logout</a></p>
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
-</br>
-  <a href="{% url 'signup' %}">New user? Sign up!</a>
-{% endif %}
+
+<body>
+
+<div class="bodystyle">
+
+  {% if user.is_authenticated %}
+
+
+  <div style="text-align:center">
+    Hi {{ user.username }}! Welocome to recommendWAh!
+  </div>
+
+  <p>
+    <a href="{% url 'logout' %}">logout</a>
+  </p>
+
+  {% else %}
+  
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">login</a>
+  
+  </br>
+  <div class="signup">
+    <a href="{% url 'signup' %}">New user? Sign up!</a>
+  </div>
+  {% endif %}
+
+</div>
+
+</body>
+
+<style>
+  body {
+    background: linear-gradient(to right, #00AAFF, #00FF6C);
+    padding: 0;
+    margin: 0;
+  }
+
+  .signup {
+
+    text-align: center;
+
+  }
+
+  .bodystyle {
+
+    height: 10em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-basis: auto;
+    text-align: center;
+
+  }
+</style>
+
 {% endblock %}
