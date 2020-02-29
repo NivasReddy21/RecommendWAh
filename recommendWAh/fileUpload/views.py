@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import DocumentForm
-
+import os
 
 # Create your views here.
 
@@ -12,6 +12,4 @@ def model_form_upload(request):
             return redirect('home')
     else:
         form = DocumentForm()
-    return render(request, 'upload.html', {
-        'form': form
-    })
+    return render(request, 'upload.html', {'form': form})

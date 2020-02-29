@@ -6,7 +6,6 @@ cursor.execute("SELECT data from available_message_view WHERE from_me = 1")
 results = cursor.fetchall()
 fileManager = open('data1.txt', 'w')
 for r in results:
-    print(r[0])
     try:
         fileManager.write(r[0] + '\n')
     except TypeError:
