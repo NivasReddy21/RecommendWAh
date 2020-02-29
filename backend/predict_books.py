@@ -1,4 +1,5 @@
 import pandas as pd
+from pandas import DataFrame
 import collections
 from gensim.models import Word2Vec, KeyedVectors
 import nltk
@@ -10,7 +11,8 @@ model = KeyedVectors.load_word2vec_format(
     'GoogleNews-vectors-negative300_1.bin', binary=True, limit=100000)
 
 data = pd.read_csv("good_reads_final.csv")
-data = data[["genre_1", "book_title", "book_fullurl"]]
+data = data[["genre_1", "book_title"]]
+book_title = data.to_dict('records  ')
 
 genres = data.genre_1.unique()
 genre_list = []
@@ -41,12 +43,13 @@ counter = []
 completedReco = []
 
 for reco in recommendation:
-    # if reco not in completedReco:
-    #     counter.append(recommendation.count(reco))
-    #     completedReco.append(reco)
     word_counter = collections.Counter(recommendation)
-
 
 for word, count in word_counter.most_common(100):
         completedReco.append(word)
-        
+
+recommended_books = []
+
+for i in range(len(book_title)):
+    if book_title[i]['genre_1'].lower() == completedReco[1]:
+        recommended_books.append(book_title[i]['book_title'])
