@@ -1,4 +1,5 @@
 import pandas as pd
+import collections
 from gensim.models import Word2Vec, KeyedVectors
 import nltk
 from gensim.utils import simple_preprocess
@@ -28,20 +29,24 @@ for word, count in ignoreRep.returnFreq().most_common(10000):
 recommendation = []
 
 for word1 in word_list:
-    try:
+    try:        
         ppg_list = model.wv.most_similar(word1)
         for predict in ppg_list:
             if predict[0].lower() in genre_list:
                 recommendation.append(predict[0].lower())
-
     except KeyError:
         pass
 
-print(stopwords.words('english'))
-
 counter = []
+completedReco = []
 
-for word, count in ignoreRep.returnFreq().most_common(150):
-    if word not in stopwords.words('english'):
-        counter.append(count)
-        print(word + ':' + str(count))
+for reco in recommendation:
+    # if reco not in completedReco:
+    #     counter.append(recommendation.count(reco))
+    #     completedReco.append(reco)
+    word_counter = collections.Counter(recommendation)
+
+
+for word, count in word_counter.most_common(100):
+        completedReco.append(word)
+        
