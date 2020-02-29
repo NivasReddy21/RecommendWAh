@@ -1,6 +1,5 @@
 import collections
 import pandas as pd
-import matplotlib.pyplot as plt
 
 def returnFreq():
 
