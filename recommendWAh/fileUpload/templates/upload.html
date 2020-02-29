@@ -7,7 +7,7 @@
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
-      <button class="upload" type="submit">Upload</button>
+      <!-- <button class="upload" href="{% url 'result' %}" type="submit">Upload</button> -->
     </form>
 
     <p><a class="returnStyle" href="{% url 'home' %}">Return to home</a></p>
